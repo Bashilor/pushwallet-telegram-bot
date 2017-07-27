@@ -1,7 +1,7 @@
-from telegram.ext import Updater, MessageHandler, Filters
+from telegram.ext import Updater, MessageHandler, Filters, CommandHandler
 from uuid import uuid4
 from functools import wraps
-import os
+import os, sys, time
 
 updater = Updater(token='YOUR-BOT-TOKEN')
 dispatcher = updater.dispatcher
