@@ -2,9 +2,8 @@
 
 Telegram BOT (based on [Python-Telegram-Bot](https://github.com/python-telegram-bot/python-telegram-bot)).
 
-### To-do list:
+### To-do list
 
-  - Admin only commands
   - Audio / Vidéo, ... commands
   - Exception Handling
   - Telegram API spam limit
