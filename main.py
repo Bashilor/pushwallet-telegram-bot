@@ -1,7 +1,7 @@
 from telegram.ext import Updater, MessageHandler, Filters, CommandHandler
 from uuid import uuid4
 from functools import wraps
-import os, sys, time
+import os, sys, time, fnmatch
 
 updater = Updater(token='YOUR-BOT-TOKEN')
 dispatcher = updater.dispatcher
@@ -24,6 +24,10 @@ def restricted(func):
 def generate_uuid():
     pw_uuid = str(uuid4())
     pw_uuid = pw_uuid.split('-')[4]
+    for root, subdirs, files in os.walk('/var/www/pw.rdyrda.fr/'):
+        for file in files:
+            if fnmatch.fnmatch(file, pw_uuid + '.*'):
+                generate_uuid()
     return pw_uuid
 
 

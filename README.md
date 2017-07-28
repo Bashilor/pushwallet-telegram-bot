@@ -5,7 +5,6 @@ Telegram BOT (based on [Python-Telegram-Bot](https://github.com/python-telegram-
 ### To-do list
 
   - Audio / Vidéo, ... commands
-  - Check if uuid already exist
   - Exception Handling
   - Telegram API spam limit
 
