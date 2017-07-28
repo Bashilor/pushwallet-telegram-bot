@@ -4,6 +4,7 @@ Telegram BOT (based on [Python-Telegram-Bot](https://github.com/python-telegram-
 
 ### To-do list
 
+  - Add a start command + basics instructions
   - Audio / Vidéo, ... commands
   - Exception Handling
   - Telegram API spam limit
