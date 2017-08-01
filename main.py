@@ -8,6 +8,11 @@ dispatcher = updater.dispatcher
 
 LIST_OF_ADMINS = [YOUR-CHAT-ID]
 
+WEBSITE_PATH = "/var/www/pw.rdyrda.fr/"
+WEBSITE_URL = "https://pw.rdyrda.fr"
+PHOTO_FOLDER = "/i/"
+PHOTO_EXTENSION = ".jpg"
+
 
 def restricted(func):
     @wraps(func)
@@ -24,7 +29,7 @@ def restricted(func):
 def generate_uuid():
     pw_uuid = str(uuid4())
     pw_uuid = pw_uuid.split('-')[4]
-    for root, subdirs, files in os.walk('/var/www/pw.rdyrda.fr/'):
+    for root, subdirs, files in os.walk(WEBSITE_PATH):
         for file in files:
             if fnmatch.fnmatch(file, pw_uuid + '.*'):
                 generate_uuid()
@@ -33,11 +38,16 @@ def generate_uuid():
 
 def photo(bot, update):
     bot.send_chat_action(chat_id=update.message.chat_id, action="typing")
+    time.sleep(0.5)
     photo_file = bot.get_file(update.message.photo[-1].file_id)
     pw_uuid = generate_uuid()
-    photo_file.download(pw_uuid + ".jpg")
-    os.rename(pw_uuid + ".jpg", "/var/www/pw.rdyrda.fr/i/" + pw_uuid + ".jpg")
-    bot.send_message(chat_id=update.message.chat_id, text="https://pw.rdyrda.fr/i/" + pw_uuid + ".jpg")
+    photo_file.download(pw_uuid + PHOTO_EXTENSION)
+    os.rename(pw_uuid + PHOTO_EXTENSION, WEBSITE_PATH + PHOTO_FOLDER + pw_uuid + PHOTO_EXTENSION)
+    bot.send_message(chat_id=update.message.chat_id, text=WEBSITE_URL + PHOTO_FOLDER + pw_uuid + PHOTO_EXTENSION)
+
+
+def start(bot, update):
+    bot.send_message(chat_id=update.message.chat_id, text="Bot is starting...")
 
 
 @restricted
@@ -50,6 +60,7 @@ def restart(bot, update):
 photo_handler = MessageHandler(Filters.photo, photo)
 dispatcher.add_handler(photo_handler)
 
+dispatcher.add_handler(CommandHandler('start', start))
 dispatcher.add_handler(CommandHandler('restart', restart))
 
 updater.start_polling()
