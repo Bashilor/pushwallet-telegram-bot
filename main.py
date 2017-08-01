@@ -3,9 +3,7 @@ from uuid import uuid4
 from functools import wraps
 import os, sys, time, fnmatch
 
-updater = Updater(token='YOUR-BOT-TOKEN')
-dispatcher = updater.dispatcher
-
+BOT_TOKEN = "YOUR-BOT-TOKEN"
 LIST_OF_ADMINS = [YOUR-CHAT-ID]
 
 WEBSITE_PATH = "/var/www/pw.rdyrda.fr/"
@@ -14,6 +12,10 @@ PHOTO_FOLDER = "/i/"
 PHOTO_EXTENSION = ".jpg"
 AUDIO_FOLDER = "/a/"
 AUDIO_EXTENSION = ".mp3"
+
+
+updater = Updater(token=BOT_TOKEN)
+dispatcher = updater.dispatcher
 
 
 def restricted(func):
