@@ -12,6 +12,8 @@ WEBSITE_PATH = "/var/www/pw.rdyrda.fr/"
 WEBSITE_URL = "https://pw.rdyrda.fr"
 PHOTO_FOLDER = "/i/"
 PHOTO_EXTENSION = ".jpg"
+AUDIO_FOLDER = "/a/"
+AUDIO_EXTENSION = ".mp3"
 
 
 def restricted(func):
@@ -46,6 +48,16 @@ def photo(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text=WEBSITE_URL + PHOTO_FOLDER + pw_uuid + PHOTO_EXTENSION)
 
 
+def audio(bot, update):
+    bot.send_chat_action(chat_id=update.message.chat_id, action="typing")
+    time.sleep(0.5)
+    voice_file = bot.get_file(update.message.audio.file_id)
+    pw_uuid = generate_uuid()
+    voice_file.download(pw_uuid + AUDIO_EXTENSION)
+    os.rename(pw_uuid + AUDIO_EXTENSION, WEBSITE_PATH + AUDIO_FOLDER + "/" + pw_uuid + AUDIO_EXTENSION)
+    bot.send_message(chat_id=update.message.chat_id, text=WEBSITE_URL + PHOTO_FOLDER + pw_uuid + AUDIO_EXTENSION)
+
+
 def start(bot, update):
     bot.send_message(chat_id=update.message.chat_id, text="Bot is starting...")
 
@@ -59,6 +71,9 @@ def restart(bot, update):
 
 photo_handler = MessageHandler(Filters.photo, photo)
 dispatcher.add_handler(photo_handler)
+
+audio_handler = MessageHandler(Filters.audio, audio)
+dispatcher.add_handler(audio_handler)
 
 dispatcher.add_handler(CommandHandler('start', start))
 dispatcher.add_handler(CommandHandler('restart', restart))
