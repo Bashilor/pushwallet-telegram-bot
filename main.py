@@ -54,7 +54,7 @@ def audio(bot, update):
     voice_file = bot.get_file(update.message.audio.file_id)
     pw_uuid = generate_uuid()
     voice_file.download(pw_uuid + AUDIO_EXTENSION)
-    os.rename(pw_uuid + AUDIO_EXTENSION, WEBSITE_PATH + AUDIO_FOLDER + "/" + pw_uuid + AUDIO_EXTENSION)
+    os.rename(pw_uuid + AUDIO_EXTENSION, WEBSITE_PATH + AUDIO_FOLDER + pw_uuid + AUDIO_EXTENSION)
     bot.send_message(chat_id=update.message.chat_id, text=WEBSITE_URL + PHOTO_FOLDER + pw_uuid + AUDIO_EXTENSION)
 
 
