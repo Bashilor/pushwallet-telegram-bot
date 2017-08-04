@@ -8,6 +8,8 @@ Telegram BOT (based on [Python-Telegram-Bot](https://github.com/python-telegram-
   - Audio / Vidéo, ... commands
   - Exception Handling
   - Telegram API spam limit
+  - Remove metadata from every file received before stocking them
+  - Add emoji (from [carpedm20/emoji](https://github.com/carpedm20/emoji) to get the bot more user-friendly
 
 ### Installation
 
