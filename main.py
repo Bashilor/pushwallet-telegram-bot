@@ -24,7 +24,6 @@ def restricted(func):
         user_id = update.effective_user.id
         if user_id not in LIST_OF_ADMINS:
             bot.send_message(chat_id=update.message.chat_id, text="You can't execute this command ! (WRONG_CHAT_ID")
-            print("Unauthorized; access denied for {}.".format(user_id))
             return
         return func(bot, update, *args, **kwargs)
     return wrapped
