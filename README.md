@@ -13,9 +13,18 @@ Telegram BOT (based on [Python-Telegram-Bot](https://github.com/python-telegram-
 
 ### Installation
 
-Install the dependecy :
+Install the dependecies :
+
+* Simple way :
+```
+$ pip install -r requirements.txt
+```
+
+* Long way :
+
 ```
 $ pip install python-telegram-bot
+$ pip install configparser
 ```
 
 Then, install the bot from sources :
