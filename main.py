@@ -25,7 +25,7 @@ def restricted(func):
     def wrapped(bot, update, *args, **kwargs):
         user_id = update.effective_user.id
         if user_id != ADMIN:
-            bot.send_message(chat_id=update.message.chat_id, text="You can't execute this command ! (WRONG_CHAT_ID)" + str(ADMIN))
+            bot.send_message(chat_id=update.message.chat_id, text="You can't execute this command ! (WRONG_CHAT_ID)")
             return
         return func(bot, update, *args, **kwargs)
     return wrapped
