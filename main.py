@@ -8,7 +8,7 @@ cfg = configparser.ConfigParser()
 cfg.read('config.ini')
 
 BOT_TOKEN 				= cfg.get('GENERAL', 'BOT_TOKEN')
-LIST_OF_ADMINS 		    = cfg.get('GENERAL', 'ADMINS_ID')
+ADMIN                   = int(cfg.get('GENERAL', 'ADMIN_ID'))
 
 WEBSITE_URL 			= cfg.get('WEBSITE', 'URL')
 STORAGE_PATH 			= cfg.get('WEBSITE', 'STORAGE_PATH')
@@ -24,8 +24,8 @@ def restricted(func):
     @wraps(func)
     def wrapped(bot, update, *args, **kwargs):
         user_id = update.effective_user.id
-        if user_id not in LIST_OF_ADMINS:
-            bot.send_message(chat_id=update.message.chat_id, text="You can't execute this command ! (WRONG_CHAT_ID")
+        if user_id != ADMIN:
+            bot.send_message(chat_id=update.message.chat_id, text="You can't execute this command ! (WRONG_CHAT_ID)" + str(ADMIN))
             return
         return func(bot, update, *args, **kwargs)
     return wrapped
