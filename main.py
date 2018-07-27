@@ -8,12 +8,12 @@ cfg = configparser.ConfigParser()
 cfg.read('config.ini')
 
 BOT_TOKEN 				= cfg.get('GENERAL', 'BOT_TOKEN')
-LIST_OF_ADMINS 		= cfg.get('GENERAL', 'ADMINS_ID')
+LIST_OF_ADMINS 		    = cfg.get('GENERAL', 'ADMINS_ID')
 
-WEBSITE_URL 				= cfg.get('WEBSITE', 'URL')
+WEBSITE_URL 			= cfg.get('WEBSITE', 'URL')
 STORAGE_PATH 			= cfg.get('WEBSITE', 'STORAGE_PATH')
 
-PHOTO_EXTENSION 	= cfg.get('FILES', 'PHOTO_EXTENSION')
+PHOTO_EXTENSION 	    = cfg.get('FILES', 'PHOTO_EXTENSION')
 AUDIO_EXTENSION 		= cfg.get('FILES', 'AUDIO_EXTENSION')
 
 updater = Updater(token=BOT_TOKEN)
